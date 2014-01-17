@@ -6,9 +6,11 @@ set -gx PATH $HOME/.cabal/bin $PATH
 set -gx PATH $HOME/bin $PATH
 
 # Universal environment variables
-set -Ux EDITOR vim
-set -Ux PAGER vimpager
 set -Ux HOSTNAME (hostname)
+set -Ux EDITOR vim
+if type vimpager >/dev/null 2>&1
+  set -Ux PAGER vimpager
+end
 
 # Keychain
 if begin; status --is-interactive; and which keychain >/dev/null 2>&1; end
