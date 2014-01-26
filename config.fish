@@ -1,9 +1,13 @@
 # PATH
+set -e fish_user_paths
+# # Rubygems
 if which ruby gem >/dev/null 2>&1
-  set -gx PATH (ruby -rubygems -e 'puts Gem.user_dir')/bin $PATH
+  set -U fish_user_paths (ruby -rubygems -e 'puts Gem.user_dir')/bin $fish_user_paths
 end
-set -gx PATH $HOME/.cabal/bin $PATH
-set -gx PATH $HOME/bin $PATH
+# # Cabal
+set -U fish_user_paths $HOME/.cabal/bin $fish_user_paths
+# # Personal
+set -U fish_user_paths $HOME/bin $fish_user_paths
 
 # Universal environment variables
 set -Ux HOSTNAME (hostname)
