@@ -4,6 +4,10 @@ set -e fish_user_paths
 if which ruby gem >/dev/null 2>&1
   set -U fish_user_paths (ruby -rubygems -e 'puts Gem.user_dir')/bin $fish_user_paths
 end
+# # Node/NPM
+set -Ux NPM_PACKAGES $HOME/.npm-packages
+set -gx NODE_PATH $NPM_PACKAGES/lib/node_modules $NODE_PATH
+set -U fish_user_paths $NPM_PACKAGES/bin $fish_user_paths
 # # Cabal
 set -U fish_user_paths $HOME/.cabal/bin $fish_user_paths
 # # Personal
