@@ -7,11 +7,17 @@ end
 # # Node/NPM
 set -Ux NPM_PACKAGES $HOME/.npm-packages
 set -gx NODE_PATH $NPM_PACKAGES/lib/node_modules $NODE_PATH
-set -U fish_user_paths $NPM_PACKAGES/bin $fish_user_paths
+if test -e $NPM_PACKAGES/bin
+  set -U fish_user_paths $NPM_PACKAGES/bin $fish_user_paths
+end
 # # Cabal
-set -U fish_user_paths $HOME/.cabal/bin $fish_user_paths
+if test -e $HOME/.cabal/bin
+  set -U fish_user_paths $HOME/.cabal/bin $fish_user_paths
+end
 # # Personal
-set -U fish_user_paths $HOME/bin $fish_user_paths
+if test -e $HOME/bin
+  set -U fish_user_paths $HOME/bin $fish_user_paths
+end
 
 # Universal environment variables
 set -Ux HOSTNAME (hostname)
