@@ -1,7 +1,7 @@
 # PATH
 set -e fish_user_paths
 # # Rubygems
-if which ruby gem >/dev/null 2>&1
+if type ruby gem >/dev/null 2>&1
   set -U fish_user_paths (ruby -rubygems -e 'puts Gem.user_dir')/bin $fish_user_paths
 end
 # # Node/NPM
@@ -27,7 +27,7 @@ if type vimpager >/dev/null 2>&1
 end
 
 # Keychain
-if begin; status --is-interactive; and which keychain >/dev/null 2>&1; end
+if begin; status --is-interactive; and type keychain >/dev/null 2>&1; end
   eval (keychain --quiet --eval id_rsa | sed 's/^set -e \S\+; and \(.*\)$/\1;/')
 end
 
