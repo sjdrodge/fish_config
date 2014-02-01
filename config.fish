@@ -1,7 +1,7 @@
 # PATH
 set -e fish_user_paths
 # # Rubygems
-if type ruby gem >/dev/null 2>&1
+if begin; type ruby >/dev/null 2>&1; and type gem >/dev/null 2>&1; end
   set -U fish_user_paths (ruby -rubygems -e 'puts Gem.user_dir')/bin $fish_user_paths
 end
 # # Node/NPM
