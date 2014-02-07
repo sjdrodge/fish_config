@@ -28,7 +28,7 @@ end
 
 # Keychain
 if begin; status --is-interactive; and type keychain >/dev/null 2>&1; end
-  eval (keychain --quiet --eval id_rsa | sed 's/^set -e \S\+; and \(.*\)$/\1;/')
+  eval (keychain --quiet --eval id_rsa | sed 's/^\(set -e \S\+; \)and \(.*\)$/\1\2;/')
 end
 
 # Virtualenv
