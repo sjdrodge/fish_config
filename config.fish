@@ -1,29 +1,5 @@
-# PATH
-set -e fish_user_paths
-# # Rubygems
-if begin; type ruby >/dev/null 2>&1; and type gem >/dev/null 2>&1; end
-  set -U fish_user_paths (ruby -rubygems -e 'puts Gem.user_dir')/bin $fish_user_paths
-end
-# # Node/NPM
-set -Ux NPM_PACKAGES $HOME/.npm-packages
-set -gx NODE_PATH $NPM_PACKAGES/lib/node_modules $NODE_PATH
-if test -e $NPM_PACKAGES/bin
-  set -U fish_user_paths $NPM_PACKAGES/bin $fish_user_paths
-end
-# # Cabal
-if test -e $HOME/.cabal/bin
-  set -U fish_user_paths $HOME/.cabal/bin $fish_user_paths
-end
-# # Personal
-if test -e $HOME/bin
-  set -U fish_user_paths $HOME/bin $fish_user_paths
-end
-
-# Universal environment variables
-set -Ux HOSTNAME (hostname)
-set -Ux EDITOR vim
-if type vimpager >/dev/null 2>&1
-  set -Ux PAGER vimpager
+if not set -q my_fish_user_vars_initialized
+  my_fish_user_variables
 end
 
 # Keychain
