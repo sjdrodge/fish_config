@@ -4,13 +4,18 @@ end
 
 # Keychain
 if begin; status --is-interactive; and type keychain >/dev/null 2>&1; end
-  eval (keychain --quiet --eval id_rsa | sed 's/^\(set -e \S\+; \)and \(.*\)$/\1\2;/')
+  eval (keychain --agents ssh --quiet --eval id_rsa | sed 's/^\(set -e \S\+; \)and \(.*\)$/\1\2;/')
 end
 
 # Virtualenv
 set -U VIRTUALFISH_HOME $HOME/.venv
 source $HOME/.config/fish/virtualfish/virtual.fish
 source $HOME/.config/fish/virtualfish/auto_activation.fish
+
+# DIR_COLORS
+if begin; type dircolors >/dev/null 2>&1; and test -e $HOME/.dircolors; end
+  eval (dircolors -c $HOME/.dircolors  | sed 's/>&\/dev\/null$//')
+end
 
 # Git prompt variables
 set -g __fish_git_prompt_show_informative_status 1
